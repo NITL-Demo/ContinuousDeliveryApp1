@@ -1,0 +1,29 @@
+{
+  "pizzas": [      {
+     "id": 1,
+     "name": "Veggie Delight",
+     "price": 1234,
+     "base":          {
+        "id": 1,
+        "name": "Pan"
+     },
+     "toppings": [         {
+        "id": 1,
+        "name": "Onion"
+     }]
+  },
+  {
+     "id": 2,
+     "name": "Veggie Supreme",
+     "price": 2234,
+     "base":          {
+        "id": 1,
+        "name": "Pan"
+     },
+     "toppings": [         {
+        "id": 1,
+        "name": "Onion"
+     }]
+  }],
+  "totalPrice": 3468
+}

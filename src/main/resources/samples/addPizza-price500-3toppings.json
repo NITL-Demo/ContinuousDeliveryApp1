@@ -1,0 +1,22 @@
+{
+"name": "Pizza-450",
+"price": 450,
+"base": {
+  "id": 4,
+  "name": "Normal"
+},
+"toppings": [
+  {
+    "id": 1,
+    "name": "Onion"
+  },
+  {
+    "id": 2,
+    "name": "Capsicum"
+  },
+  {
+    "id": 3,
+    "name": "Jalapenos"
+  }
+]
+}

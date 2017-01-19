@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="b0d09921-2b8a-49e8-897a-92c676d06f15" activeEnvironment="Default" name="3-Pizzas" resourceRoot="" soapui-version="5.2.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:RestService" id="5b90958b-d048-48a9-a447-11ffc7ce9245" wadlVersion="http://wadl.dev.java.net/2009/02" name="http://localhost:8080" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://localhost:8080</con:endpoint></con:endpoints><con:resource name="Pizzas" path="/pizzas" id="6daaf918-f571-4a94-91cf-3e06ef223ea0"><con:settings/><con:parameters/><con:method name="Pizzas" id="afd34090-4a6b-4ba6-b969-2829c908e2b3" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json;charset=UTF-8</con:mediaType><con:status>200</con:status><con:params/><con:element>Response</con:element></con:representation><con:representation type="FAULT"><con:mediaType>application/json;charset=UTF-8</con:mediaType><con:status>405 404 400</con:status><con:params/><con:element xmlns:piz="http://localhost/pizzas">piz:Fault</con:element></con:representation><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:request name="Request 1" id="e9d486cc-36d6-43e9-b0ee-88092dbc4800" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8080</con:endpoint><con:request>{
+"name": "Non Veggie All",
+"price": 499,
+"base": {
+  "id": 4,
+  "name": "Normal"
+},
+"toppings": [
+  {
+    "id": 7,
+    "name": "Chicken"
+  },
+  {
+    "id": 8,
+    "name": "Ham"
+  }
+]
+}</con:request><con:originalUri>http://localhost/pizzas</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>
