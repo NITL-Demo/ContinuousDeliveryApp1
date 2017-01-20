@@ -27,6 +27,19 @@
 	</properties>
 
 	
+	<distributionManagement>
+		<repositories>
+		  <repository>
+		     <id>release-snapshot-repository</id>
+		     <name>release-snapshots</name>
+		     <snapshots>
+				<enabled>true</enabled>
+		     </snapshots>
+		     <url>http://172.18.51.88:8080/artifactory/libs-snapshot-local</url>
+		  </repository>
+		</repositories>
+	</distributionManagement>	
+	
 	
 	<dependencies>
 		<dependency>
