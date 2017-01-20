@@ -26,21 +26,7 @@
 		<java.version>1.8</java.version>
 	</properties>
 
-	 <!--Artifactory Configuration -->
-	 <distributionManagement>
-		<repository>
-		    <id>release-repository</id>
-		    <url>http://172.18.51.88:8080/artifactory/libs-release-local</url>
-		    <name>libs-release-local</name>
-		</repository>
-		<snapshotRepository>
-		    <id>snapshot-repository</id>
-		    <name>libs-snapshot-local</name>
-		    <url>http://172.18.51.88:8080/artifactory/libs-snapshot-local</url>
-		    <uniqueVersion>false</uniqueVersion>
-		</snapshotRepository>
-	    </distributionManagement>
-	<!--Artifactory Configuration -->
+	
 	
 	<dependencies>
 		<dependency>
@@ -122,6 +108,55 @@
 					</formats>
 				</configuration>
 			</plugin>
+			
+			<!-- Artifactory Configuration -->
+			<plugin>
+				<groupId>org.jfrog.buildinfo</groupId>
+				<artifactId>artifactory-maven-plugin</artifactId>
+				<version>2.4.1</version>
+				<inherited>false</inherited>
+				<executions>
+				    <execution>
+					<id>build-info</id>
+					<goals>
+					    <goal>publish</goal>
+					</goals>
+					<configuration>
+					    <deployProperties>
+						<gradle>awesome</gradle>
+					    </deployProperties>
+					    <artifactory>
+						<includeEnvVars>true</includeEnvVars>
+						<timeoutSec>60</timeoutSec>
+						<propertiesFile>publish.properties</propertiesFile>
+					    </artifactory>
+					    <publisher>
+						<contextUrl>http://172.18.51.88:8080/artifactory</contextUrl>
+						<!--<username>${username}</username>
+						<password>${password}</password>-->
+						<excludePatterns>*-tests.jar</excludePatterns>
+						<repoKey>libs-release-local</repoKey>
+						<snapshotRepoKey>libs-snapshot-local</snapshotRepoKey>
+					    </publisher>
+					    <buildInfo>
+						<buildName>plugin-demo</buildName>
+						<buildNumber>1</buildNumber>
+						<buildUrl>www.iniiitian.com</buildUrl>
+					    </buildInfo>
+					    <licenses>
+						<autoDiscover>true</autoDiscover>
+						<includePublishedArtifacts>false</includePublishedArtifacts>
+						<runChecks>true</runChecks>
+						<scopes>compile,runtime</scopes>
+						<violationRecipients>runa.pal@niit-tech.com</violationRecipients>
+					    </licenses>
+					</configuration>
+				    </execution>
+				</executions>
+			    </plugin>
+			<!-- Artifactory Configuration -->
+			
+			
 		</plugins>
 	</build>
 	
@@ -157,27 +192,7 @@
         </dependency>
       </dependencies>
     </profile>
-  <!-- Artifactory Configuration -->	  
-    <profile>
-	<repositories>
-	      <repository>
-	            <id>central</id>
-	            <snapshots>
-	            <enabled>false</enabled>
-	             </snapshots>
-	             <name>libs-release</name>
-	             <url>http://172.18.51.88:8080/artifactory/libs-release-local</url>
-	        </repository>
-	<repository>
-	        <id>snapshots</id>
-	         <snapshots />
-	         <name>libs-snapshot</name>
-	          <url>http://172.18.51.88:8080/artifactory/libs-snapshot-local</url>
-	</repository>
-     </repositories>
-    </profile>	  
-   <!-- Artifactory Configuration -->	  
-	  
+ 
 	  
   </profiles>
   <!-- END: Specific to mapping unit tests and covered code -->
