@@ -28,17 +28,18 @@
 
 	
 	<distributionManagement>
-		<repositories>
-		  <repository>
-		     <id>release-snapshot-repository</id>
-		     <name>release-snapshots</name>
-		     <snapshots>
-				<enabled>true</enabled>
-		     </snapshots>
-		     <url>http://172.18.51.88:8080/artifactory/libs-snapshot-local</url>
-		  </repository>
-		</repositories>
-	</distributionManagement>	
+        <repository>
+            <id>release-repository</id>
+            <url>http://172.18.51.88:8080/artifactory/libs-release-local/</url>
+            <name>nexus</name>
+        </repository>
+        <snapshotRepository>
+            <id>snapshot-repository</id>
+            <name>nexus</name>
+            <url>http://172.18.51.88:8080/artifactory/libs-snapshot-local/</url>
+            <uniqueVersion>false</uniqueVersion>
+        </snapshotRepository>
+    </distributionManagement>
 	
 	
 	<dependencies>
