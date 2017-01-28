@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://172.19.0.2:3306/capsule
+    url: jdbc:mysql://10.0.0.1:3306/capsule
     username: root
     password: runa
     driver-class-name: com.mysql.jdbc.Driver
