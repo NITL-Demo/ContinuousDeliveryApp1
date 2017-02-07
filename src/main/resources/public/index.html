@@ -28,6 +28,9 @@
 					var _len = data.length;
 					var post, i , toppings ;
 					
+					var div = document.getElementById('pizzalist');
+					div.parentNode.removeChild(div);
+										
 
 					 var table = document.createElement('table');
 					 table.style.width = '100%';
@@ -79,7 +82,7 @@
 						row1col3.innerHTML = toppingsStr;
 						
 					  }
-					 var div = document.getElementById('pizzalist');
+					 
                      div.appendChild(table);
 					 //document.getElementById('pizzalist').innerHTML = dataStr;
 					
