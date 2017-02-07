@@ -16,7 +16,7 @@
 					var _len = data.length;
 					var post, i , toppings ;
 					
-					var div = document.getElementById('pizzalist');
+					var div = document.getElementById('container');
 					div.innerHTML = ""; 
 										
 
@@ -85,14 +85,95 @@
 			  // Base 
 			  $('#bases').click(function ()
              {
-			     alert("bases");
+			     //alert("bases");
+				 $.ajax({
+				  type: "GET",
+				  url: "/devcapsule-spring-1.0/bases",
+				  contentType: "application/json; charset=utf-8",
+				  dataType: "json",
+				  success: function(data) {
+				                  
+								  var _len = data.length;
+				                  var div = document.getElementById('container');
+					              div.innerHTML = ""; 
+								  
+								  var table = document.createElement('table');
+								  table.style.width = '100%';
+								  table.setAttribute('border', '1');
+								  
+								  
+								  var row = table.insertRow(0);
+								  row.style.border = "1px solid #000"
+								 
+								  var rowcol1 = row.insertCell(0);
+								  rowcol1.innerHTML = "Bases";
+								  
+								  
+								  for (i = 0; i < _len; i++) {
+									//debugger
+									post = data[i];	
+									var row1 = table.insertRow(i+1);
+									row1.style.border = "1px solid #000"
+									// Insert New Column for Row1 at index '0'.
+									var row1col1 = row1.insertCell(0);
+									row1col1.innerHTML = post.name;
+											  
+								  }
+								  
+								  div.appendChild(table);
+								  
+				          }
+				  });
+				 
+				 
 			  });
 			  
 			  
 			  // Toppings
-			    $('#toppings').click(function ()
-             {
-			      alert("toppings");
+			  $('#toppings').click(function ()
+              {
+			      //alert("toppings");
+				  $.ajax({
+				  type: "GET",
+				  url: "/devcapsule-spring-1.0/toppings",
+				  contentType: "application/json; charset=utf-8",
+				  dataType: "json",
+				  success: function(data) {
+				            
+							      var _len = data.length;
+				                  var div = document.getElementById('container');
+					              div.innerHTML = ""; 
+								  
+								  var table = document.createElement('table');
+								  table.style.width = '100%';
+								  table.setAttribute('border', '1');
+								  
+								  
+								  var row = table.insertRow(0);
+								  row.style.border = "1px solid #000"
+								 
+								  var rowcol1 = row.insertCell(0);
+								  rowcol1.innerHTML = "Bases";
+								  
+								  
+								  for (i = 0; i < _len; i++) {
+									//debugger
+									post = data[i];	
+									var row1 = table.insertRow(i+1);
+									row1.style.border = "1px solid #000"
+									// Insert New Column for Row1 at index '0'.
+									var row1col1 = row1.insertCell(0);
+									row1col1.innerHTML = post.name;
+											  
+								  }
+								  
+								  div.appendChild(table);
+				  
+				     }
+				  });
+				  
+				  
+				  
 			  });
 			  
 			  
@@ -106,7 +187,7 @@
 	<br>
    
 	<button id="pizza">PIZZA</button> <button id="bases">BASES</button> <button id="toppings">TOPPINGS</button>   
-	<div id="pizzalist"></div>
+	<div id="container"></div>
 	
 	
 </body>
