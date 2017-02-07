@@ -3,10 +3,10 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-		       alert("Hi..1");
+		      // alert("Hi..1");
             $('#pizza').click(function ()
             {
-			     alert("Hi..2");
+			    // alert("Hi..2");
 				/* 
                 $.ajax({
                     type: "post",
@@ -25,8 +25,14 @@
 				  dataType: "json",
 				  success: function(msg) {
 					// Do magic here
-					alert("Pizza Ready");
-					document.writeln("Pizzas: " +  msg);
+					//alert("Pizza Ready");
+					//document.writeln("Pizzas: " +  msg.name);
+					
+					$("#pizzalist").text(msg.name);
+
+                    $("#pizzalist").html(msg.name);
+					
+					
 				  }
 				});
 				
@@ -46,6 +52,7 @@
 	-->
 	<p>Get your Pizza <a href="/devcapsule-spring-1.0/pizzas">Pizza</a></p>
 	<button id="pizza">Pizza</button>
+	<div id="pizzalist"></div>
 	
 	
 </body>
