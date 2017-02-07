@@ -27,10 +27,11 @@
 					// Do magic here
 					var _len = data.length;
 					var post, i , toppings ;
-					var toppingsStr = "";
+					
 
 					var table = document.createElement('table');
-					
+					 table.style.width = '100%';
+                     table.setAttribute('border', '1');
 					
 					  for (i = 0; i < _len; i++) {
 						//debugger
@@ -38,6 +39,7 @@
 						//dataStr = dataStr + "<br>" + post.name   ;
 						
 						var row1 = table.insertRow(i);
+						row1.style.border = "1px solid #000"
 						// Insert New Column for Row1 at index '0'.
 						var row1col1 = row1.insertCell(0);
 						row1col1.innerHTML = post.name;
@@ -51,6 +53,7 @@
 						var row1col3 = row1.insertCell(3);
 						
 						var _toppingsLen = post.toppings.length;
+						var toppingsStr = "";
 						for( j = 0 ; j < _toppingsLen ; j++) {
 						   toppings = post.toppings[j] ;
                  		   toppingsStr = toppingsStr + "<br>" + toppings.name ;				   
