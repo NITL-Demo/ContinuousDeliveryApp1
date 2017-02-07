@@ -27,16 +27,34 @@
 					// Do magic here
 					var _len = data.length;
 					var post, i;
-					var dataStr ;
+					var dataStr ="";
 
+					var table = document.createElement('table');
+					
+					
 					  for (i = 0; i < _len; i++) {
 						//debugger
-						post = data[i];
-						alert("m_positionName is "+ post.name);
-						dataStr = dataStr + "<br>" + post.name   ;
+						post = data[i];						
+						//dataStr = dataStr + "<br>" + post.name   ;
+						
+						var row1 = table.insertRow(i);
+						// Insert New Column for Row1 at index '0'.
+						var row1col1 = row1.insertCell(0);
+						row1col1.innerHTML = post.name;
+						// Insert New Column for Row1 at index '1'.
+						var row1col2 = row1.insertCell(1);
+						row1col2.innerHTML = post.price;
+						// Insert New Column for Row1 at index '2'.
+						var row1col3 = row1.insertCell(2);
+						row1col3.innerHTML = post.base.name;
+						
+						var row1col3 = row1.insertCell(3);
+						row1col3.innerHTML = post.toppings.name;
+						
 					  }
-					
-					document.getElementById('pizzalist').innerHTML = dataStr;
+					 var div = document.getElementById('pizzalist');
+                     div.appendChild(table);
+					 //document.getElementById('pizzalist').innerHTML = dataStr;
 					
 					
 				  }
