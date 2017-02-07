@@ -1,40 +1,51 @@
-<!DOCTYPE HTML>
 <html>
 <head>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+		       alert("Hi..1");
+            $('#pizza').click(function ()
+            {
+			     alert("Hi..2");
+				/* 
+                $.ajax({
+                    type: "post",
+                    url: "testme", //this is my servlet
+                    data: "input=" +$('#ip').val()+"&output="+$('#op').val(),
+                    success: function(msg){      
+                            $('#output').append(msg);
+                    }
+                });
+				*/
+				
+				$.ajax({
+				  type: "GET",
+				  url: "/devcapsule-spring-1.0/pizzas",
+				  contentType: "application/json; charset=utf-8",
+				  dataType: "json",
+				  success: function(msg) {
+					// Do magic here
+					alert("Pizza Ready");
+					document.writeln("Pizzas: " +  msg);
+				  }
+				});
+				
+            });
+
+        });
+    </script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Pizzas</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
-	<script type="text/javascript">
-
-     $('#pizza').click(function(){
-        testService();
-           
-    });
-
-	function testService()
-	{
-							
-		  $.ajax({
-		  type: "GET",
-		  url: "/devcapsule-spring-1.0/pizzas",
-		  contentType: "application/json; charset=utf-8",
-		  dataType: "json",
-		  success: function(msg) {
-			// Do magic here
-			alert("Pizza Ready");
-			document.writeln("Pizzas: " +  msg);
-		  }
-		});
-    }
-
-
-
-</script>
-
-	
 </head>
 <body>
-    <p>Get your Pizza <a href="/devcapsule-spring-1.0/pizzas">Pizza</a></p>
+   <!--
+    input:<input id="ip" type="text" name="" value="" /><br></br>
+    output:<input id="op" type="text" name="" value="" /><br></br>
+    <input type="button" value="Call Servlet" name="Call Servlet" id="call"/>
+    <div id="output"></div>
+	-->
+	<p>Get your Pizza <a href="/devcapsule-spring-1.0/pizzas">Pizza</a></p>
 	<button id="pizza">Pizza</button>
+	
+	
 </body>
-</html>
