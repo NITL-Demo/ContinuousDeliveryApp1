@@ -29,16 +29,34 @@
 					var post, i , toppings ;
 					
 
-					var table = document.createElement('table');
+					 var table = document.createElement('table');
 					 table.style.width = '100%';
                      table.setAttribute('border', '1');
+					 
+					 
+					 var row = table.insertRow(0);
+					 row.style.border = "1px solid #000"
+					 
+					 var rowcol1 = row.insertCell(0);
+					 rowcol1.innerHTML = "Pizza Name";
+					 
+					 var rowcol2 = row.insertCell(1);
+					 rowcol2.innerHTML = "Price";
+					 
+					 var rowcol3 = row.insertCell(2);
+					 rowcol3.innerHTML = "Base";
+					 
+					 
+					 var rowcol4 = row.insertCell(3);
+					 rowcol4.innerHTML = "Toppings";
+					 
 					
 					  for (i = 0; i < _len; i++) {
 						//debugger
 						post = data[i];						
 						//dataStr = dataStr + "<br>" + post.name   ;
 						
-						var row1 = table.insertRow(i);
+						var row1 = table.insertRow(i+1);
 						row1.style.border = "1px solid #000"
 						// Insert New Column for Row1 at index '0'.
 						var row1col1 = row1.insertCell(0);
@@ -79,14 +97,7 @@
 <body>
     <div> PIZZA ONLINE </div>
 	<br>
-   <!--
-    input:<input id="ip" type="text" name="" value="" /><br></br>
-    output:<input id="op" type="text" name="" value="" /><br></br>
-    <input type="button" value="Call Servlet" name="Call Servlet" id="call"/>
-    <div id="output"></div>
-	
-	<p>Get your Pizza <a href="/devcapsule-spring-1.0/pizzas">Pizza</a></p>
-	-->
+   
 	<button id="pizza">Pizza Menu</button>
 	<div id="pizzalist"></div>
 	
