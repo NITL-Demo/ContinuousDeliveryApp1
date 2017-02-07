@@ -26,8 +26,8 @@
 				  success: function(data) {
 					// Do magic here
 					var _len = data.length;
-					var post, i;
-					var dataStr ="";
+					var post, i , toppings ;
+					var toppingsStr = "";
 
 					var table = document.createElement('table');
 					
@@ -49,7 +49,13 @@
 						row1col3.innerHTML = post.base.name;
 						
 						var row1col3 = row1.insertCell(3);
-						row1col3.innerHTML = post.toppings.name;
+						
+						var _toppingsLen = post.toppings.length;
+						for( j = 0 ; j < _toppingsLen ; j++) {
+						   toppings = post.toppings[j] ;
+                 		   toppingsStr = toppingsStr + "<br>" + toppings.name ;				   
+						}
+						row1col3.innerHTML = toppingsStr;
 						
 					  }
 					 var div = document.getElementById('pizzalist');
