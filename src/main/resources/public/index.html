@@ -6,8 +6,6 @@
 		      // alert("Hi..1");
             $('#pizza').click(function ()
             {
-			    
-				
 				$.ajax({
 				  type: "GET",
 				  url: "/devcapsule-spring-1.0/pizzas",
@@ -84,8 +82,18 @@
 				
             });
               
+			  // Base 
+			  $('#bases').click(function ()
+             {
+			     alert("bases");
+			  });
 			  
 			  
+			  // Toppings
+			    $('#toppings').click(function ()
+             {
+			      alert("toppings");
+			  });
 			  
 			  
         });
@@ -97,7 +105,7 @@
     <div> PIZZA ONLINE </div>
 	<br>
    
-	<button id="pizza">Pizza Menu</button>
+	<button id="pizza">PIZZA</button> <button id="bases">BASES</button> <button id="toppings">TOPPINGS</button>   
 	<div id="pizzalist"></div>
 	
 	
