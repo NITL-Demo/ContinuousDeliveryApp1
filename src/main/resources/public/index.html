@@ -3,8 +3,38 @@
 <head>
     <title>Pizzas</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+	<script type="text/javascript">
+
+     $('#pizza').click(function(){
+        testService();
+           
+    });
+
+	function testService()
+	{
+							
+		  $.ajax({
+		  type: "GET",
+		  url: "/devcapsule-spring-1.0/pizzas",
+		  contentType: "application/json; charset=utf-8",
+		  dataType: "json",
+		  success: function(msg) {
+			// Do magic here
+			alert("Pizza Ready");
+			document.writeln("Pizzas: " +  msg);
+		  }
+		});
+    }
+
+
+
+</script>
+
+	
 </head>
 <body>
     <p>Get your Pizza <a href="/devcapsule-spring-1.0/pizzas">Pizza</a></p>
+	<button id="pizza">Pizza</button>
 </body>
 </html>
