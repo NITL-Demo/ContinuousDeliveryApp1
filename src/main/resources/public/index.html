@@ -6,17 +6,7 @@
 		      // alert("Hi..1");
             $('#pizza').click(function ()
             {
-			    // alert("Hi..2");
-				/* 
-                $.ajax({
-                    type: "post",
-                    url: "testme", //this is my servlet
-                    data: "input=" +$('#ip').val()+"&output="+$('#op').val(),
-                    success: function(msg){      
-                            $('#output').append(msg);
-                    }
-                });
-				*/
+			    
 				
 				$.ajax({
 				  type: "GET",
@@ -44,14 +34,14 @@
 					 rowcol1.innerHTML = "Pizza Name";
 					 
 					 var rowcol2 = row.insertCell(1);
-					 rowcol2.innerHTML = "Price";
+					 rowcol2.innerHTML = "Base";
 					 
 					 var rowcol3 = row.insertCell(2);
-					 rowcol3.innerHTML = "Base";
+					 rowcol3.innerHTML = "Toppings";
 					 
 					 
 					 var rowcol4 = row.insertCell(3);
-					 rowcol4.innerHTML = "Toppings";
+					 rowcol4.innerHTML = "Price";
 					 
 					
 					  for (i = 0; i < _len; i++) {
@@ -65,13 +55,13 @@
 						var row1col1 = row1.insertCell(0);
 						row1col1.innerHTML = post.name;
 						// Insert New Column for Row1 at index '1'.
-						var row1col2 = row1.insertCell(1);
+						var row1col2 = row1.insertCell(3);
 						row1col2.innerHTML = post.price;
 						// Insert New Column for Row1 at index '2'.
-						var row1col3 = row1.insertCell(2);
+						var row1col3 = row1.insertCell(1);
 						row1col3.innerHTML = post.base.name;
 						
-						var row1col3 = row1.insertCell(3);
+						var row1col3 = row1.insertCell(2);
 						
 						var _toppingsLen = post.toppings.length;
 						var toppingsStr = "";
@@ -91,7 +81,11 @@
 				});
 				
             });
-
+              
+			  
+			  
+			  
+			  
         });
     </script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
