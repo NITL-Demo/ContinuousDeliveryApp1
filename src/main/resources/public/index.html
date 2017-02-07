@@ -54,9 +54,7 @@
 						// Insert New Column for Row1 at index '0'.
 						var row1col1 = row1.insertCell(0);
 						row1col1.innerHTML = post.name;
-						// Insert New Column for Row1 at index '1'.
-						var row1col2 = row1.insertCell(3);
-						row1col2.innerHTML = post.price;
+						
 						// Insert New Column for Row1 at index '2'.
 						var row1col3 = row1.insertCell(1);
 						row1col3.innerHTML = post.base.name;
@@ -70,6 +68,10 @@
                  		   toppingsStr = toppingsStr + "<br>" + toppings.name ;				   
 						}
 						row1col3.innerHTML = toppingsStr;
+						
+						// Insert New Column for Row1 at index '1'.
+						var row1col2 = row1.insertCell(3);
+						row1col2.innerHTML = post.price;
 						
 					  }
 					 
