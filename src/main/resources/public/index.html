@@ -23,18 +23,20 @@
 				  url: "/devcapsule-spring-1.0/pizzas",
 				  contentType: "application/json; charset=utf-8",
 				  dataType: "json",
-				  success: function(msg) {
+				  success: function(data) {
 					// Do magic here
-					alert("Pizza Ready");
-					alert("Yo..."+msg.name);
-					//document.writeln("Pizzas: " +  msg.name);
-					document.getElementById('pizzalist').innerHTML = msg.name;
+					var _len = data.length;
+					var post, i;
+					var dataStr ;
 
-                    document.getElementById('pizzalist').innerText = msg.name;
+					  for (i = 0; i < _len; i++) {
+						//debugger
+						post = data[i];
+						alert("m_positionName is "+ post.name);
+						dataStr = dataStr + "<br>" + post.name   ;
+					  }
 					
-					$("#pizzalist").text(msg.name);
-
-                    $("#pizzalist").html(msg.name);
+					document.getElementById('pizzalist').innerHTML = dataStr;
 					
 					
 				  }
