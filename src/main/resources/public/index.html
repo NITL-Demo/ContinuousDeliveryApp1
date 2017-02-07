@@ -25,8 +25,12 @@
 				  dataType: "json",
 				  success: function(msg) {
 					// Do magic here
-					//alert("Pizza Ready");
+					alert("Pizza Ready");
+					alert("Yo..."+msg.name);
 					//document.writeln("Pizzas: " +  msg.name);
+					document.getElementById('pizzalist').innerHTML = msg.name;
+
+                    document.getElementById('pizzalist').innerText = msg.name;
 					
 					$("#pizzalist").text(msg.name);
 
