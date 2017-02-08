@@ -216,22 +216,32 @@
 								  for (i = 0; i < _len; i++) {
 									//debugger
 									post = data[i];	
-									var row1 = table.insertRow(i+1);
-									row1.style.border = "1px solid #000"
-									// Insert New Column for Row1 at index '0'.
-									var row1col1 = row1.insertCell(0);
-									row1col1.innerHTML = post.pizzas.name;
+									var post_len = post.length;
 									
 									
-									var row1col2 = row1.insertCell(1);
-									row1col2.innerHTML = post.pizzas.base.name;
+									for(j=0 ; j < post_len ; j++){
 									
-									var row1col3 = row1.insertCell(2);
-									row1col3.innerHTML = post.pizzas.toppings.name;
-									
-									
-									var row2col4 = row1.insertCell(3);
-									row2col4.innerHTML = post.totalPrice;
+									    var pizzasData = post[j] ;
+										
+										var row1 = table.insertRow(i+1);
+										row1.style.border = "1px solid #000"
+										// Insert New Column for Row1 at index '0'.
+										var row1col1 = row1.insertCell(0);
+										row1col1.innerHTML = pizzasData.name;
+										
+										
+										var row1col2 = row1.insertCell(1);
+										row1col2.innerHTML = pizzasData.base.name;
+										
+										
+										var row1col3 = row1.insertCell(2);
+										//row1col3.innerHTML = post.pizzas.toppings.name;
+										
+										
+										var row2col4 = row1.insertCell(3);
+										//row2col4.innerHTML = post.totalPrice;
+										
+									}
 											  
 								  }
 								  
