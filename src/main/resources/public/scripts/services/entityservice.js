@@ -16,7 +16,7 @@ angular.module('storeClientApp').factory('dataFactory', ['$http', function ($htt
 
 	//Find All - Valid for all entities
 	dataFactory.findAll = function(entity) {
-		alert("entity:::"+entity);
+		alert("entity:::"+urlBase + entity);
 		var promise = $http({method:'GET', url: urlBase + entity})
 			.success(function (data) {
 				return data;
