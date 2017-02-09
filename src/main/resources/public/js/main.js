@@ -18,7 +18,7 @@ $(document).ready(function() {
 					div.innerHTML = ""; 
 										
 					 var table = document.createElement('table');
-					 table.style.width = '70%';
+					 table.style.width = '60%';
                      table.setAttribute('border', '1');
 					 
 					 
@@ -192,7 +192,7 @@ $(document).ready(function() {
 					              div.innerHTML = ""; 
 								  
 								  var table = document.createElement('table');
-								  table.style.width = '100%';
+								  table.style.width = '60%';
 								  table.setAttribute('border', '1');
 								  
 								  
