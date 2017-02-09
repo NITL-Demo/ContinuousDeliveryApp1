@@ -203,7 +203,7 @@ $(document).ready(function() {
 								  var rowcol1 = row.insertCell(0);
 								  rowcol1.innerHTML = "Pizza Name";
 								  
-								  /*
+								  
 								  var rowcol1 = row.insertCell(1);
 								  rowcol1.innerHTML = "Base";
 								  
@@ -212,7 +212,7 @@ $(document).ready(function() {
 								  
 								  var rowcol1 = row.insertCell(3);
 								  rowcol1.innerHTML = "Total Price";
-								  */
+								  
 								  
 								  for (i = 0; i < _len; i++) {
 										
@@ -222,14 +222,30 @@ $(document).ready(function() {
 									    row1.style.border = "1px solid #000"
 										
 									    var _pizzasLen = post.pizzas.length;
-										var pizzaStr = "";
+										
 										for( j = 0 ; j < _pizzasLen ; j++) {
 										   var pizza = post.pizzas[j] ;
-										   pizzaStr = pizzaStr + "<br>" + pizza.name ;				   
+										   
+                                           var row1col1 = row1.insertCell(0);
+										   row1col1.innerHTML = pizza.name;	
+
+
+                                           var row1col2 = row1.insertCell(1);
+										   row1col2.innerHTML = pizza.base.name;		
+
+
+                                           var _toppingsLen = pizza.toppings.length ;		
+                                           for( k = 0 ; k < _toppingsLen ; k++) {
+											   var topp = pizza.toppings[k];
+											   var row1col3 = row1.insertCell(2);
+										       row1col3.innerHTML = topp.name;	
+										   }
+                                               										   
+										   
 										}
 										// Insert New Column for Row1 at index '0'.
-										var row1col1 = row1.insertCell(0);
-										row1col1.innerHTML = pizzaStr;
+										var row1col4 = row1.insertCell(3);
+										row1col4.innerHTML = post.totalPrice;	
 								  
 								  }
 								 								  
