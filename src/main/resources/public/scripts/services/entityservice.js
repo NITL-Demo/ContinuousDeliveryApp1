@@ -10,8 +10,8 @@
 
 angular.module('storeClientApp').factory('dataFactory', ['$http', function ($http){
 	//var urlBase = 'http://localhost:8080/';
-	//var urlBase = 'http://172.18.51.87:81/';
-	var urlBase ='';
+	var urlBase = 'http://172.18.51.87:81/devcapsule-spring-1.0/';
+	//var urlBase ='';
 	var dataFactory = {};
 
 	//Find All - Valid for all entities
