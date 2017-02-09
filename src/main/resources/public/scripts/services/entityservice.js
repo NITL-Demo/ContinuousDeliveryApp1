@@ -19,9 +19,11 @@ angular.module('storeClientApp').factory('dataFactory', ['$http', function ($htt
 		alert("entity:::"+urlBase + entity);
 		var promise = $http({method:'GET', url: urlBase + entity})
 			.success(function (data) {
+				alert("data:::"+data);
 				return data;
 			})
 			.error(function () {
+				alert("data:::No ***");
 				return {'status': "Unable to get all bases"};
 			});
 
