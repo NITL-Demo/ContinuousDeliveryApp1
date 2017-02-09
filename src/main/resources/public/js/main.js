@@ -1,5 +1,7 @@
 $(document).ready(function() {
 		      // alert("Hi..1");
+			  
+			  //Pizzas
             $('#pizza').click(function ()
             {
 				$.ajax({
@@ -77,7 +79,8 @@ $(document).ready(function() {
 				});
 				
             });
-              
+              //Pizzas
+			  
 			  // Base 
 			  $('#bases').click(function ()
              {
@@ -114,7 +117,7 @@ $(document).ready(function() {
 									// Insert New Column for Row1 at index '0'.
 									var row1col1 = row1.insertCell(0);
 									row1col1.innerHTML = post.name;
-											  
+									  
 								  }
 								  
 								  div.appendChild(table);
@@ -124,7 +127,7 @@ $(document).ready(function() {
 				 
 				 
 			  });
-			  
+			  //Bases
 			  
 			  // Toppings
 			  $('#toppings').click(function ()
@@ -170,8 +173,8 @@ $(document).ready(function() {
 				     }
 				  });
 			  });
+			  //Toppings
 			  
-			  /*
 			  // Orders
 			  $('#orders').click(function ()
               {
@@ -184,6 +187,7 @@ $(document).ready(function() {
 				  success: function(data) {
 				            
 							      var _len = data.length;
+								  var post;
 				                  var div = document.getElementById('container');
 					              div.innerHTML = ""; 
 								  
@@ -202,53 +206,37 @@ $(document).ready(function() {
 								  var rowcol1 = row.insertCell(1);
 								  rowcol1.innerHTML = "Base";
 								  
-								   var rowcol1 = row.insertCell(2);
+								  var rowcol1 = row.insertCell(2);
 								  rowcol1.innerHTML = "Toppings";
 								  
-								   var rowcol1 = row.insertCell(3);
+								  var rowcol1 = row.insertCell(3);
 								  rowcol1.innerHTML = "Total Price";
 								  
-								  
 								  for (i = 0; i < _len; i++) {
-									//debugger
-									post = data[i];	
-									
-									var post_len = post.length;
-									alert("Lenghth=="+post_len);
-									
-									
-									for(j=0 ; j < post_len ; j++){
-									
-									    var pizzasData = post[j] ;
 										
-										var row1 = table.insertRow(i+1);
-										row1.style.border = "1px solid #000"
+										post = data[i];
+									
+									    var row1 = table.insertRow(i+1);
+									    row1.style.border = "1px solid #000"
+										
+									    var _pizzasLen = post.pizzas.length;
+										var pizzaStr = "";
+										for( j = 0 ; j < _toppingsLen ; j++) {
+										   var pizza = post.pizzas[j] ;
+										   pizzaStr = pizzaStr + "<br>" + pizza.name ;				   
+										}
 										// Insert New Column for Row1 at index '0'.
 										var row1col1 = row1.insertCell(0);
-										row1col1.innerHTML = pizzasData.name;
-										
-										
-										var row1col2 = row1.insertCell(1);
-										row1col2.innerHTML = pizzasData.base.name;
-										
-										
-										var row1col3 = row1.insertCell(2);
-										//row1col3.innerHTML = post.pizzas.toppings.name;
-										
-										
-										var row2col4 = row1.insertCell(3);
-										//row2col4.innerHTML = post.totalPrice;
-										
-									}
-											  
-								  }
+										row1col1.innerHTML = pizzaStr;
 								  
+								  }
+								 								  
 								  div.appendChild(table);
 				  
 				     }
 				  });
 			  });
-			  */
+			  //Orders
 			  
 			  
         });
