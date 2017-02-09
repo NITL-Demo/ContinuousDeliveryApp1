@@ -203,6 +203,7 @@ $(document).ready(function() {
 								  var rowcol1 = row.insertCell(0);
 								  rowcol1.innerHTML = "Pizza Name";
 								  
+								  /*
 								  var rowcol1 = row.insertCell(1);
 								  rowcol1.innerHTML = "Base";
 								  
@@ -211,6 +212,7 @@ $(document).ready(function() {
 								  
 								  var rowcol1 = row.insertCell(3);
 								  rowcol1.innerHTML = "Total Price";
+								  */
 								  
 								  for (i = 0; i < _len; i++) {
 										
