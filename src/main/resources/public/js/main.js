@@ -223,7 +223,7 @@ $(document).ready(function() {
 										
 									    var _pizzasLen = post.pizzas.length;
 										var pizzaStr = "";
-										for( j = 0 ; j < _toppingsLen ; j++) {
+										for( j = 0 ; j < _pizzasLen ; j++) {
 										   var pizza = post.pizzas[j] ;
 										   pizzaStr = pizzaStr + "<br>" + pizza.name ;				   
 										}
