@@ -27,12 +27,11 @@ angular.module('storeClientApp')
       dataFactory.findAll('bases').then(
 	     
         function (response) {
-		  alert("In BaseCtrl:::"+response);	
-			//alert("In BaseCtrl:::"+response.data);	
+		 	
           $scope.entityList = response.data;
         },
         function () {
-			alert("In BaseCtrl:::Unable to get bases");	
+			
           $scope.show = 1;
           $scope.OutputLabel = "Unable to get bases";
         }
