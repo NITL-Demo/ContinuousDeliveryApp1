@@ -17,12 +17,16 @@ import com.niit.devcapsule.service.ToppingService;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The Class ToppingController.
  */
 @RestController
 public class ToppingController {
+	
+   private static final Logger logger = LoggerFactory.getLogger(ToppingController.class);		
 
   /** The topping service. */
   @Autowired
@@ -37,6 +41,7 @@ public class ToppingController {
   @ApiOperation(value = "Get all the toppings", response = Topping.class, responseContainer = "List", produces = "application/json")
   @RequestMapping(value = "/toppings", method = RequestMethod.GET)
   public Iterable<Topping> getToppings() {
+	logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Find all Toppings");  
     return toppingService.findAll();
   }
 
@@ -52,7 +57,9 @@ public class ToppingController {
   public Topping getToppingByName(
       @ApiParam(value = "Name of the Topping to retrieve", required = true) @PathVariable String name) {
     Topping topping = toppingService.findByName(name);
+	logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Find Toppings By Name: {}",name);
     if (topping == null) {
+	  logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Toppings with Name: {} not found",name);	
       throw new ResourceNotFoundException("Topping with name " + name + " not found");
     }
     return topping;
@@ -69,6 +76,7 @@ public class ToppingController {
   @ApiOperation(value = "Add a new topping", notes = "ID to be left blank. Will be ignored if passed.", response = Topping.class, produces = "application/json")
   @RequestMapping(value = "/toppings", method = RequestMethod.POST, consumes = "application/json")
   public Topping addTopping(@ApiParam(value = "New topping to add", required = true) @RequestBody Topping topping) {
+	 logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Toppings with Name: {} added",topping.getName());	  
     return toppingService.addTopping(topping.getName());
   }
 }

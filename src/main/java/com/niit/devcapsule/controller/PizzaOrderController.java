@@ -17,12 +17,18 @@ import com.niit.devcapsule.service.PizzaOrderService;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
 
 /**
  * The Class PizzaOrderController.
  */
 @RestController
 public class PizzaOrderController {
+
+  private static final Logger logger = LoggerFactory.getLogger(PizzaOrderController.class);
 
   /** The pizza order service. */
   @Autowired
@@ -37,6 +43,7 @@ public class PizzaOrderController {
   @ApiOperation(value = "Get all the orders", produces = "application/json", response = PizzaOrder.class, responseContainer = "List")
   @RequestMapping(value = "/orders", method = RequestMethod.GET)
   public Iterable<PizzaOrder> getPizzaOrders() {
+	logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Find all Ordered Pizza");  
     return pizzaOrderService.findAll();
   }
 
@@ -52,6 +59,8 @@ public class PizzaOrderController {
   @RequestMapping(value = "/orders", method = RequestMethod.POST, consumes = "application/json")
   public PizzaOrder addPizzaOrder(
       @ApiParam(value = "New pizza order to add", required = true) @RequestBody PizzaOrder pizzaOrder) {
+		  
+	logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Pizza Ordered : {}",pizzaOrder.getId());	  
     return pizzaOrderService.addOrder(pizzaOrder);
   }
 
@@ -73,8 +82,11 @@ public class PizzaOrderController {
     pizzaOrder.setId(id);
     PizzaOrder isItThere = pizzaOrderService.findById(id);
     if (isItThere == null) {
-      throw new ResourceNotFoundException("Order with id " + id + " not found");
+      logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Pizza Order Id: {} not found",id);	  
+	  throw new ResourceNotFoundException("Order with id " + id + " not found");
+	  
     }
+	 logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Pizza Order Id: {} updated",id);
     return pizzaOrderService.updateOrder(pizzaOrder);
   }
 
@@ -89,9 +101,13 @@ public class PizzaOrderController {
   @RequestMapping(value = "/orders/{id}", method = RequestMethod.DELETE)
   public void deletePizzaOrder(@ApiParam(value = "ID of the pizza order to delete", required = true) @PathVariable Long id) {
     PizzaOrder isItThere = pizzaOrderService.findById(id);
+	
     if (isItThere == null) {
-      throw new ResourceNotFoundException("Order with id " + id + " not found");
+      logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Pizza Order Id: {} not found",id);
+	  throw new ResourceNotFoundException("Order with id " + id + " not found");
+	  
     }
+	logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Pizza Order Id: {} deleted",id);
     pizzaOrderService.deleteOrder(id);
   }
 

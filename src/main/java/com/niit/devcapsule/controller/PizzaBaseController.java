@@ -17,12 +17,16 @@ import com.niit.devcapsule.service.PizzaBaseService;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The Class PizzaBaseController.
  */
 @RestController
 public class PizzaBaseController {
+	
+  private static final Logger logger = LoggerFactory.getLogger(PizzaBaseController.class);	
 
   /** The pizza base service. */
   @Autowired
@@ -37,6 +41,7 @@ public class PizzaBaseController {
   @ApiOperation(value = "Get all the pizza bases", produces = "application/json", response = Base.class, responseContainer = "List")
   @RequestMapping(value = "/bases", method = RequestMethod.GET)
   public Iterable<Base> getBases() {
+	logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Find all Bases");  
     return pizzaBaseService.findAll();
   }
 
@@ -52,7 +57,9 @@ public class PizzaBaseController {
   public Base getBaseByName(
       @ApiParam(value = "Name of the base to retrieve", required = true) @PathVariable String name) {
     Base base = pizzaBaseService.findByName(name);
+	logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Pizza base with Name:: {}", name);  
     if (base == null) {
+	  logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Pizza base with Name:: {} not found", name);  	
       throw new ResourceNotFoundException("Pizza base with name " + name + " not found");
     }
     return base;
@@ -69,6 +76,7 @@ public class PizzaBaseController {
   @ApiOperation(value = "Add a new pizza base", produces = "application/json", response = Base.class)
   @RequestMapping(value = "/bases", method = RequestMethod.POST, consumes = "application/json")
   public Base addBase(@ApiParam(value = "Pizza base to be added", required = true) @RequestBody Base base) {
+	logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|BaseName : {}  added", base.getName());    
     return pizzaBaseService.addBase(base.getName());
   }
 }
