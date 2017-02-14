@@ -15,6 +15,8 @@ import org.springframework.stereotype.Component;
 import com.niit.devcapsule.dao.PizzaDAO;
 import com.niit.devcapsule.domain.Pizza;
 import com.niit.devcapsule.domain.Topping;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The Class PizzaServiceImpl.
@@ -22,6 +24,8 @@ import com.niit.devcapsule.domain.Topping;
 @Component
 @Transactional
 public class PizzaServiceImpl implements PizzaService {
+	
+  private static final Logger logger = LoggerFactory.getLogger(PizzaServiceImpl.class);			
 
   /** The pizza dao. */
   @Autowired
@@ -34,6 +38,7 @@ public class PizzaServiceImpl implements PizzaService {
    */
   @Override
   public List<Pizza> findAll() {
+	logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Find All Pizzas");  
     return pizzaDao.findAll();
   }
 
@@ -53,6 +58,7 @@ public class PizzaServiceImpl implements PizzaService {
       pizzaSaved.setToppings(toppings);
       pizzaSaved = pizzaDao.save(pizzaSaved);
     }
+	logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Pizza {} added ",pizza.getName());  
     return pizzaSaved;
   }
 
@@ -65,6 +71,7 @@ public class PizzaServiceImpl implements PizzaService {
    */
   @Override
   public Pizza updatePizza(Pizza pizza) {
+	  logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Pizza Id {} updated",pizza.getId());  
     return pizzaDao.save(pizza);
   }
 
@@ -75,6 +82,7 @@ public class PizzaServiceImpl implements PizzaService {
    */
   @Override
   public Pizza findById(Long id) {
+	  logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Pizza Id {}",id);  
     return pizzaDao.findById(id);
   }
 

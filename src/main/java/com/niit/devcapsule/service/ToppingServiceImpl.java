@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 
 import com.niit.devcapsule.dao.ToppingDAO;
 import com.niit.devcapsule.domain.Topping;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The Class ToppingServiceImpl.
@@ -17,6 +19,9 @@ import com.niit.devcapsule.domain.Topping;
 @Component
 public class ToppingServiceImpl implements ToppingService {
 
+  private static final Logger logger = LoggerFactory.getLogger(ToppingServiceImpl.class);	
+
+ 
   /** The topping dao. */
   @Autowired
   ToppingDAO toppingDao;
@@ -30,6 +35,7 @@ public class ToppingServiceImpl implements ToppingService {
   @Override
   public Topping addTopping(String name) {
     Topping topping = new Topping(name);
+	logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Topping {} saved" , name);
     return toppingDao.save(topping);
   }
 
@@ -40,6 +46,7 @@ public class ToppingServiceImpl implements ToppingService {
    */
   @Override
   public List<Topping> findAll() {
+    logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Find all Toppings");
     return toppingDao.findAll();
   }
 
@@ -50,6 +57,7 @@ public class ToppingServiceImpl implements ToppingService {
    */
   @Override
   public Topping findById(Long id) {
+	logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Find Toppings By Id: {}",id);
     return toppingDao.findById(id);
   }
 
@@ -61,6 +69,7 @@ public class ToppingServiceImpl implements ToppingService {
    */
   @Override
   public Topping findByName(String name) {
+	logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Find Toppings By Name: {}",name);
     return toppingDao.findByName(name);
   }
 }

@@ -10,12 +10,17 @@ import org.springframework.stereotype.Component;
 
 import com.niit.devcapsule.dao.PizzaBaseDAO;
 import com.niit.devcapsule.domain.Base;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 /**
  * The Class PizzaBaseServiceImpl.
  */
 @Component
 public class PizzaBaseServiceImpl implements PizzaBaseService {
+	
+  private static final Logger logger = LoggerFactory.getLogger(PizzaBaseServiceImpl.class);	
 
   /** The pizza base dao. */
   @Autowired
@@ -28,6 +33,7 @@ public class PizzaBaseServiceImpl implements PizzaBaseService {
    */
   @Override
   public List<Base> findAll() {
+    logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Find all Bases");
     return pizzaBaseDao.findAll();
   }
 
@@ -38,6 +44,7 @@ public class PizzaBaseServiceImpl implements PizzaBaseService {
    */
   @Override
   public Base addBase(String name) {
+	logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|BaseName : {}  added", name);  
     Base base = new Base(name);
     return pizzaBaseDao.save(base);
   }
@@ -49,6 +56,7 @@ public class PizzaBaseServiceImpl implements PizzaBaseService {
    */
   @Override
   public Base findById(Long id) {
+	logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Find Base By Id:: {}", id);  
     return pizzaBaseDao.findById(id);
   }
 
@@ -60,6 +68,7 @@ public class PizzaBaseServiceImpl implements PizzaBaseService {
    */
   @Override
   public Base findByName(String name) {
+	logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Find Base By Name:: {}", name);    
     return pizzaBaseDao.findByName(name);
   }
 }
