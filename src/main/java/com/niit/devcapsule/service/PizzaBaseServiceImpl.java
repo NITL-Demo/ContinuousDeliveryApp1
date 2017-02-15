@@ -33,7 +33,7 @@ public class PizzaBaseServiceImpl implements PizzaBaseService {
    */
   @Override
   public List<Base> findAll() {
-    logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Find all Bases");
+    //logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Find all Bases");
     return pizzaBaseDao.findAll();
   }
 

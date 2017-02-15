@@ -38,7 +38,7 @@ public class PizzaServiceImpl implements PizzaService {
    */
   @Override
   public List<Pizza> findAll() {
-	logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Find All Pizzas");  
+	//logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Find All Pizzas");  
     return pizzaDao.findAll();
   }
 

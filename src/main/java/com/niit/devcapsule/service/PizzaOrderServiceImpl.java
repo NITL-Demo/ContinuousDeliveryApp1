@@ -54,7 +54,7 @@ public class PizzaOrderServiceImpl implements PizzaOrderService {
    */
   @Override
   public List<PizzaOrder> findAll() {
-	logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Find all Ordered Pizza");  
+	//logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Find all Ordered Pizza");  
     return pizzaOrderDAO.findAll();
   }
 
