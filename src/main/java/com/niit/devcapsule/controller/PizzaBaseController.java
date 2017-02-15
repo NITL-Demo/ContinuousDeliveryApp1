@@ -46,17 +46,23 @@ public class PizzaBaseController {
   public Iterable<Base> getBases() {
 	//logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Find all Bases");
 	Iterable<Base> baseIterable = pizzaBaseService.findAll();
-	Iterator<Base> baseIterator =  baseIterable.iterator();
-	StringBuffer baseBuffer = new StringBuffer();
-	baseBuffer.append("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Base List :");
-	while(baseIterator.hasNext())
-	{
-		Base baseObj = baseIterator.next() ;
-		baseBuffer.append(baseObj.getName());
-		baseBuffer.append("##");
+	try{
+		
+		Iterator<Base> baseIterator =  baseIterable.iterator();
+		StringBuffer baseBuffer = new StringBuffer();
+		baseBuffer.append("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Base List :");
+		while(baseIterator.hasNext())
+		{
+			Base baseObj = baseIterator.next() ;
+			baseBuffer.append(baseObj.getName());
+			baseBuffer.append("##");
+		}
+		logger.info(baseBuffer.toString());
+	}catch(Exception ex){
+		ex.printStackTrace();
 	}
-	logger.info(baseBuffer.toString());
-    return pizzaBaseService.findAll();
+	
+    return baseIterable;
   }
 
   /**

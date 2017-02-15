@@ -45,18 +45,23 @@ public class ToppingController {
   @RequestMapping(value = "/toppings", method = RequestMethod.GET)
   public Iterable<Topping> getToppings() {
 	//logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Find all Toppings"); 
-	Iterable<Topping> toppingIterable = toppingService.findAll();
-	Iterator<Topping> toppingItr = toppingIterable.iterator();
-	StringBuffer toppingBuffer = new StringBuffer();
-	toppingBuffer.append("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Toppings List : ");
-	while(toppingItr.hasNext()){
-		Topping toppingObj = new Topping();
-		toppingBuffer.append(toppingObj.getName());
-		toppingBuffer.append("##");
+	Iterable<Topping> toppingIterable = toppingService.findAll();  
+	try{  
+			
+			Iterator<Topping> toppingItr = toppingIterable.iterator();
+			StringBuilder toppingBuffer = new StringBuilder();
+			toppingBuffer.append("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Toppings List : ");
+			while(toppingItr.hasNext()){
+				Topping toppingObj = toppingItr.next();
+				toppingBuffer.append(toppingObj.getName());
+				toppingBuffer.append("##");
+			}
+			logger.info(toppingBuffer.toString());
+	}catch(Exception ex){
+		ex.printStackTrace();
 	}
-	logger.info(toppingBuffer.toString());
 	
-    return toppingService.findAll();
+    return toppingIterable;
   }
 
   /**

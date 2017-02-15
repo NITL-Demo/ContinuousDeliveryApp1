@@ -45,18 +45,24 @@ public class PizzaController {
   @RequestMapping(value = "/pizzas", method = RequestMethod.GET)
   public Iterable<Pizza> getPizzas() {
 	//logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Find All Pizzas");
-	Iterable<Pizza> pizzaIterable = pizzaService.findAll();
-	Iterator<Pizza> pizzaItr = pizzaIterable.iterator();
-	StringBuffer pizzaBuffer = new StringBuffer();
-	pizzaBuffer.append("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Pizza List :");
-	while(pizzaItr.hasNext()){
-		Pizza pizzaObj = pizzaItr.next();
-		pizzaBuffer.append(pizzaObj.getName());
-		pizzaBuffer.append("##");
+	Iterable<Pizza> pizzaIterable = pizzaService.findAll();  
+	try{  
+		
+		Iterator<Pizza> pizzaItr = pizzaIterable.iterator();
+		StringBuffer pizzaBuffer = new StringBuffer();
+		pizzaBuffer.append("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Pizza List :");
+		while(pizzaItr.hasNext()){
+			Pizza pizzaObj = pizzaItr.next();
+			pizzaBuffer.append(pizzaObj.getName());
+			pizzaBuffer.append("##");
+		}
+		logger.info(pizzaBuffer.toString());
+	}catch(Exception ex){
+		ex.printStackTrace();
 	}
-	logger.info(pizzaBuffer.toString());
 	
-    return pizzaService.findAll();
+	
+    return pizzaIterable;
   }
 
   /**
