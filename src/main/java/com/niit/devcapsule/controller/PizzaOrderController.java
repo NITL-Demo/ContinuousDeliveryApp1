@@ -3,6 +3,9 @@
  */
 package com.niit.devcapsule.controller;
 
+import java.util.Iterator;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,11 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.niit.devcapsule.domain.Pizza;
 import com.niit.devcapsule.domain.PizzaOrder;
 import com.niit.devcapsule.service.PizzaOrderService;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,7 +48,22 @@ public class PizzaOrderController {
   @ApiOperation(value = "Get all the orders", produces = "application/json", response = PizzaOrder.class, responseContainer = "List")
   @RequestMapping(value = "/orders", method = RequestMethod.GET)
   public Iterable<PizzaOrder> getPizzaOrders() {
-	logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Find all Ordered Pizza");  
+	//logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Find all Ordered Pizza");  
+	Iterable<PizzaOrder> pizzaOrderIterable = pizzaOrderService.findAll();
+	Iterator<PizzaOrder> pizzaOrderIter = pizzaOrderIterable.iterator();
+	StringBuffer pizzaOrderBuffer = new StringBuffer();
+	pizzaOrderBuffer.append("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Ordered Pizza List : ");
+	while(pizzaOrderIter.hasNext()){
+		PizzaOrder pizzaOrdObj = pizzaOrderIter.next();
+		Set<Pizza> pizzaSet = pizzaOrdObj.getPizzas();
+		Iterator<Pizza> pizzaItr = pizzaSet.iterator();
+		while(pizzaItr.hasNext()){
+			pizzaOrderBuffer.append(pizzaItr.next().getName());
+			pizzaOrderBuffer.append("##");
+		}
+	}
+	logger.info(pizzaOrderBuffer.toString());
+	
     return pizzaOrderService.findAll();
   }
 

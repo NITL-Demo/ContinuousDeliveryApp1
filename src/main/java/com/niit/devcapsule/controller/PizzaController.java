@@ -3,6 +3,8 @@
  */
 package com.niit.devcapsule.controller;
 
+import java.util.Iterator;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,6 +19,7 @@ import com.niit.devcapsule.service.PizzaService;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,7 +44,18 @@ public class PizzaController {
   @ApiOperation(value = "Get all the pizzas", response = Pizza.class, responseContainer = "List", produces = "application/json")
   @RequestMapping(value = "/pizzas", method = RequestMethod.GET)
   public Iterable<Pizza> getPizzas() {
-	logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Find All Pizzas");
+	//logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Find All Pizzas");
+	Iterable<Pizza> pizzaIterable = pizzaService.findAll();
+	Iterator<Pizza> pizzaItr = pizzaIterable.iterator();
+	StringBuffer pizzaBuffer = new StringBuffer();
+	pizzaBuffer.append("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Pizza List :");
+	while(pizzaItr.hasNext()){
+		Pizza pizzaObj = pizzaItr.next();
+		pizzaBuffer.append(pizzaObj.getName());
+		pizzaBuffer.append("##");
+	}
+	logger.info(pizzaBuffer.toString());
+	
     return pizzaService.findAll();
   }
 

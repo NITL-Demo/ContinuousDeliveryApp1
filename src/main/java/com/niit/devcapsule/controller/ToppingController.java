@@ -3,6 +3,8 @@
  */
 package com.niit.devcapsule.controller;
 
+import java.util.Iterator;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,6 +19,7 @@ import com.niit.devcapsule.service.ToppingService;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,7 +44,18 @@ public class ToppingController {
   @ApiOperation(value = "Get all the toppings", response = Topping.class, responseContainer = "List", produces = "application/json")
   @RequestMapping(value = "/toppings", method = RequestMethod.GET)
   public Iterable<Topping> getToppings() {
-	logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Find all Toppings");  
+	//logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Find all Toppings"); 
+	Iterable<Topping> toppingIterable = toppingService.findAll();
+	Iterator<Topping> toppingItr = toppingIterable.iterator();
+	StringBuffer toppingBuffer = new StringBuffer();
+	toppingBuffer.append("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Toppings List : ");
+	while(toppingItr.hasNext()){
+		Topping toppingObj = new Topping();
+		toppingBuffer.append(toppingObj.getName());
+		toppingBuffer.append("##");
+	}
+	logger.info(toppingBuffer.toString());
+	
     return toppingService.findAll();
   }
 

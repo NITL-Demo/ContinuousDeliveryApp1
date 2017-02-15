@@ -3,6 +3,8 @@
  */
 package com.niit.devcapsule.controller;
 
+import java.util.Iterator;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,6 +19,7 @@ import com.niit.devcapsule.service.PizzaBaseService;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,7 +44,18 @@ public class PizzaBaseController {
   @ApiOperation(value = "Get all the pizza bases", produces = "application/json", response = Base.class, responseContainer = "List")
   @RequestMapping(value = "/bases", method = RequestMethod.GET)
   public Iterable<Base> getBases() {
-	logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Find all Bases");  
+	//logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Find all Bases");
+	Iterable<Base> baseIterable = pizzaBaseService.findAll();
+	Iterator<Base> baseIterator =  baseIterable.iterator();
+	StringBuffer baseBuffer = new StringBuffer();
+	baseBuffer.append("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Base List :");
+	while(baseIterator.hasNext())
+	{
+		Base baseObj = baseIterator.next() ;
+		baseBuffer.append(baseObj.getName());
+		baseBuffer.append("##");
+	}
+	logger.info(baseBuffer.toString());
     return pizzaBaseService.findAll();
   }
 
