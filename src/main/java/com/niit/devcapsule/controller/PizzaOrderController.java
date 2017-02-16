@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.niit.devcapsule.domain.Pizza;
 import com.niit.devcapsule.domain.PizzaOrder;
 import com.niit.devcapsule.service.PizzaOrderService;
+import com.niit.devcapsule.service.PizzaService;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -38,7 +39,17 @@ public class PizzaOrderController {
   /** The pizza order service. */
   @Autowired
   PizzaOrderService pizzaOrderService;
+  
+  @Autowired
+  PizzaService pizzaService;
+  
 
+  private static final String loggerMessage = "TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429"+"|Transaction:{}" 
+          + "|Price:{}" + "|OrderNo.:{}" + "|Pizza Name :{}" + "|Topping Name:{}" + "|Base Name:{}" ; 
+
+  private static final String[] logParameters = new String[6] ;
+  
+  
   /**
    * Gets the pizza orders.
    *
@@ -49,26 +60,7 @@ public class PizzaOrderController {
   @RequestMapping(value = "/orders", method = RequestMethod.GET)
   public Iterable<PizzaOrder> getPizzaOrders() {
 	//logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Find all Ordered Pizza");  
-	  Iterable<PizzaOrder> pizzaOrderIterable = pizzaOrderService.findAll();
-	  try{
-				
-				Iterator<PizzaOrder> pizzaOrderIter = pizzaOrderIterable.iterator();
-				StringBuffer pizzaOrderBuffer = new StringBuffer();
-				pizzaOrderBuffer.append("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Ordered Pizza List : ");
-				while(pizzaOrderIter.hasNext()){
-					PizzaOrder pizzaOrdObj = pizzaOrderIter.next();
-					Set<Pizza> pizzaSet = pizzaOrdObj.getPizzas();
-					Iterator<Pizza> pizzaItr = pizzaSet.iterator();
-					while(pizzaItr.hasNext()){
-						pizzaOrderBuffer.append(pizzaItr.next().getName());
-						pizzaOrderBuffer.append("##");
-					}
-				}
-				logger.info(pizzaOrderBuffer.toString());
-	  }catch(Exception ex){
-			ex.printStackTrace();
-	   }
-	
+	Iterable<PizzaOrder> pizzaOrderIterable = pizzaOrderService.findAll();
     return pizzaOrderIterable;
   }
 
@@ -85,8 +77,33 @@ public class PizzaOrderController {
   public PizzaOrder addPizzaOrder(
       @ApiParam(value = "New pizza order to add", required = true) @RequestBody PizzaOrder pizzaOrder) {
 		  
-	logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Pizza Ordered : {}",pizzaOrder.getId());	  
-    return pizzaOrderService.addOrder(pizzaOrder);
+	//logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Pizza Ordered : {}",pizzaOrder.getId());	 
+	
+	PizzaOrder pizzaOrdered = pizzaOrderService.addOrder(pizzaOrder);
+	
+	Set<Pizza> pizzaOrderedList =  pizzaOrdered.getPizzas();
+	//Iterator<Pizza> pizzaItr = pizzaOrderedList.iterator();
+	 
+	//while(pizzaItr.hasNext()){
+		 // Pizza pizza = pizzaItr.next();
+	try{
+	    for(Pizza pizza : pizzaOrderedList){		
+	    	 Pizza pizzaObj = pizzaService.findById(pizza.getId());
+	    	
+			 logParameters[0] = "Pizza Ordered";
+		     logParameters[1] = String.valueOf(pizzaObj.getPrice());
+		     logParameters[2] = String.valueOf(pizzaOrdered.getId()) ;
+		     logParameters[3] = pizzaObj.getName();
+		     logParameters[4] = String.valueOf(pizzaObj.getToppings().size());
+		     logParameters[5] = pizzaObj.getBase().getName();
+			 
+		     logger.info(loggerMessage, logParameters);  
+		}
+	}catch(Exception ex){
+		ex.printStackTrace();
+	}
+	
+     return pizzaOrder ;
   }
 
   /**
@@ -107,11 +124,11 @@ public class PizzaOrderController {
     pizzaOrder.setId(id);
     PizzaOrder isItThere = pizzaOrderService.findById(id);
     if (isItThere == null) {
-      logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Pizza Order Id: {} not found",id);	  
+      //logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Pizza Order Id: {} not found",id);	  
 	  throw new ResourceNotFoundException("Order with id " + id + " not found");
 	  
     }
-	 logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Pizza Order Id: {} updated",id);
+	 //logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Pizza Order Id: {} updated",id);
     return pizzaOrderService.updateOrder(pizzaOrder);
   }
 
@@ -128,11 +145,11 @@ public class PizzaOrderController {
     PizzaOrder isItThere = pizzaOrderService.findById(id);
 	
     if (isItThere == null) {
-      logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Pizza Order Id: {} not found",id);
+      //logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Pizza Order Id: {} not found",id);
 	  throw new ResourceNotFoundException("Order with id " + id + " not found");
 	  
     }
-	logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Pizza Order Id: {} deleted",id);
+	//logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Pizza Order Id: {} deleted",id);
     pizzaOrderService.deleteOrder(id);
   }
 

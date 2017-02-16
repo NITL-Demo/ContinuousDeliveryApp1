@@ -34,6 +34,12 @@ public class PizzaController {
   /** The pizza service. */
   @Autowired
   PizzaService pizzaService;
+  
+  
+  private static final String loggerMessage = "TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429"+"|Transaction:{}" 
+          + "|Price:{}" + "|OrderNo.:{}" + "|Pizza Name :{}" + "|Topping Name:{}" + "|Base Name:{}" ; 
+
+  private static final String[] logParameters = new String[6] ;
 
   /**
    * Gets the toppings.
@@ -46,22 +52,6 @@ public class PizzaController {
   public Iterable<Pizza> getPizzas() {
 	//logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Find All Pizzas");
 	Iterable<Pizza> pizzaIterable = pizzaService.findAll();  
-	try{  
-		
-		Iterator<Pizza> pizzaItr = pizzaIterable.iterator();
-		StringBuffer pizzaBuffer = new StringBuffer();
-		pizzaBuffer.append("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Pizza List :");
-		while(pizzaItr.hasNext()){
-			Pizza pizzaObj = pizzaItr.next();
-			pizzaBuffer.append(pizzaObj.getName());
-			pizzaBuffer.append("##");
-		}
-		logger.info(pizzaBuffer.toString());
-	}catch(Exception ex){
-		ex.printStackTrace();
-	}
-	
-	
     return pizzaIterable;
   }
 
@@ -76,7 +66,17 @@ public class PizzaController {
   @ApiOperation(value = "Add a new pizza", notes = "Correct ID and Name combinations for Toppings need to be provided.", response = Pizza.class, produces = "application/json")
   @RequestMapping(value = "/pizzas", method = RequestMethod.POST, consumes = "application/json")
   public Pizza addPizza(@ApiParam(value = "Pizza to be added", required = true) @RequestBody Pizza pizza) {
-	logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Pizza {} added ",pizza.getName());  
+	//logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Pizza {} added ",pizza.getName());  
+	     logParameters[0] = "Pizza Added";
+	     logParameters[1] = pizza.getPrice().toString();
+	     logParameters[2] = "" ;
+	     logParameters[3] = pizza.getName();
+	     logParameters[4] = String.valueOf(pizza.getToppings().size());
+	     logParameters[5] = pizza.getBase().getName();
+		 
+	     logger.info(loggerMessage, logParameters);  
+	  
+	  
     return pizzaService.addPizza(pizza);
   }
 
@@ -96,12 +96,12 @@ public class PizzaController {
       @ApiParam(value = "Id of the pizza to save", required = true) @PathVariable Long id) {
     pizza.setId(id);
     Pizza isItthere = pizzaService.findById(id);
-	logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Pizza Id {}",id);  
+	//logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Pizza Id {}",id);  
     if (isItthere == null) {
-		logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Pizza with Id {} not found",id);  
+		//logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Pizza with Id {} not found",id);  
       throw new ResourceNotFoundException("Pizza with ID " + id + " not found");
     }
-	logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Pizza Id {} updated",id); 
+	//logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Pizza Id {} updated",id); 
     return pizzaService.updatePizza(pizza);
   }
 }

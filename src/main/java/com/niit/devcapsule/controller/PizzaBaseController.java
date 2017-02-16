@@ -30,6 +30,12 @@ import org.slf4j.LoggerFactory;
 public class PizzaBaseController {
 	
   private static final Logger logger = LoggerFactory.getLogger(PizzaBaseController.class);	
+  
+  
+  private static final String loggerMessage = "TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429"+"|Transaction:{}" 
+          + "|Price:{}" + "|OrderNo.:{}" + "|Pizza Name :{}" + "|Topping Name:{}" + "|Base Name:{}" ; 
+
+  private static final String[] logParameters = new String[6] ;
 
   /** The pizza base service. */
   @Autowired
@@ -46,22 +52,6 @@ public class PizzaBaseController {
   public Iterable<Base> getBases() {
 	//logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Find all Bases");
 	Iterable<Base> baseIterable = pizzaBaseService.findAll();
-	try{
-		
-		Iterator<Base> baseIterator =  baseIterable.iterator();
-		StringBuffer baseBuffer = new StringBuffer();
-		baseBuffer.append("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Base List :");
-		while(baseIterator.hasNext())
-		{
-			Base baseObj = baseIterator.next() ;
-			baseBuffer.append(baseObj.getName());
-			baseBuffer.append("##");
-		}
-		logger.info(baseBuffer.toString());
-	}catch(Exception ex){
-		ex.printStackTrace();
-	}
-	
     return baseIterable;
   }
 
@@ -77,9 +67,9 @@ public class PizzaBaseController {
   public Base getBaseByName(
       @ApiParam(value = "Name of the base to retrieve", required = true) @PathVariable String name) {
     Base base = pizzaBaseService.findByName(name);
-	logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Pizza base with Name:: {}", name);  
+	//logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Pizza base with Name:: {}", name);  
     if (base == null) {
-	  logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Pizza base with Name:: {} not found", name);  	
+	  //logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Pizza base with Name:: {} not found", name);  	
       throw new ResourceNotFoundException("Pizza base with name " + name + " not found");
     }
     return base;
@@ -96,7 +86,15 @@ public class PizzaBaseController {
   @ApiOperation(value = "Add a new pizza base", produces = "application/json", response = Base.class)
   @RequestMapping(value = "/bases", method = RequestMethod.POST, consumes = "application/json")
   public Base addBase(@ApiParam(value = "Pizza base to be added", required = true) @RequestBody Base base) {
-	logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|BaseName : {}  added", base.getName());    
+	//logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|BaseName : {}  added", base.getName());  
+	logParameters[0] = "Base Added";
+    logParameters[1] = "";
+    logParameters[2] = "" ;
+    logParameters[3] = "" ;
+    logParameters[4] = "";
+    logParameters[5] = base.getName();
+	 
+    logger.info(loggerMessage, logParameters);
     return pizzaBaseService.addBase(base.getName());
   }
 }

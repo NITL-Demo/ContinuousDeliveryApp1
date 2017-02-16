@@ -35,6 +35,11 @@ public class ToppingController {
   @Autowired
   ToppingService toppingService;
 
+  private static final String loggerMessage = "TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429"+"|Transaction:{}" 
+		                                      + "|Price:{}" + "|OrderNo.:{}" + "|Pizza Name :{}" + "|Topping Name:{}" + "|Base Name:{}" ; 
+  
+  private static final String[] logParameters = new String[6] ;
+  
   /**
    * Gets the toppings.
    *
@@ -46,21 +51,6 @@ public class ToppingController {
   public Iterable<Topping> getToppings() {
 	//logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Find all Toppings"); 
 	Iterable<Topping> toppingIterable = toppingService.findAll();  
-	try{  
-			
-			Iterator<Topping> toppingItr = toppingIterable.iterator();
-			StringBuilder toppingBuffer = new StringBuilder();
-			toppingBuffer.append("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Toppings List : ");
-			while(toppingItr.hasNext()){
-				Topping toppingObj = toppingItr.next();
-				toppingBuffer.append(toppingObj.getName());
-				toppingBuffer.append("##");
-			}
-			logger.info(toppingBuffer.toString());
-	}catch(Exception ex){
-		ex.printStackTrace();
-	}
-	
     return toppingIterable;
   }
 
@@ -76,9 +66,9 @@ public class ToppingController {
   public Topping getToppingByName(
       @ApiParam(value = "Name of the Topping to retrieve", required = true) @PathVariable String name) {
     Topping topping = toppingService.findByName(name);
-	logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Find Toppings By Name: {}",name);
+	//logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Find Toppings By Name: {}",name);
     if (topping == null) {
-	  logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Toppings with Name: {} not found",name);	
+	  //logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Toppings with Name: {} not found",name);	
       throw new ResourceNotFoundException("Topping with name " + name + " not found");
     }
     return topping;
@@ -95,7 +85,16 @@ public class ToppingController {
   @ApiOperation(value = "Add a new topping", notes = "ID to be left blank. Will be ignored if passed.", response = Topping.class, produces = "application/json")
   @RequestMapping(value = "/toppings", method = RequestMethod.POST, consumes = "application/json")
   public Topping addTopping(@ApiParam(value = "New topping to add", required = true) @RequestBody Topping topping) {
-	 logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Toppings with Name: {} added",topping.getName());	  
-    return toppingService.addTopping(topping.getName());
+	     //logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Toppings with Name: {} added",topping.getName());	  
+	     logParameters[0] = "Topping Added";
+	     logParameters[1] = "";
+	     logParameters[2] = "" ;
+	     logParameters[3] = "" ;
+	     logParameters[4] = topping.getName();
+	     logParameters[5] = "";
+		 
+	     logger.info(loggerMessage, logParameters);
+     
+	 return toppingService.addTopping(topping.getName());
   }
 }
