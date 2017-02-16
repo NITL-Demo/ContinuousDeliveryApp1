@@ -31,7 +31,8 @@ public class PizzaOrderServiceImpl implements PizzaOrderService {
    */
   @Override
   public PizzaOrder addOrder(PizzaOrder pizzaOrder) {
-	logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Pizza OrderID: {} added",pizzaOrder.getId());	    
+	//logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Pizza OrderID: {} added",pizzaOrder.getId());	 
+	  
     return pizzaOrderDAO.save(pizzaOrder);
   }
 
@@ -43,7 +44,7 @@ public class PizzaOrderServiceImpl implements PizzaOrderService {
    */
   @Override
   public void deleteOrder(Long id) {
-	logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Pizza OrderID: {} deleted",id);	  
+	//logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Pizza OrderID: {} deleted",id);	  
     pizzaOrderDAO.delete(id);
   }
 
@@ -66,7 +67,7 @@ public class PizzaOrderServiceImpl implements PizzaOrderService {
    */
   @Override
   public PizzaOrder updateOrder(PizzaOrder pizzaOrder) {
-	logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Pizza OrderID: {} updated",pizzaOrder.getId());	  
+	//logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Pizza OrderID: {} updated",pizzaOrder.getId());	  
     return pizzaOrderDAO.save(pizzaOrder);
   }
 
@@ -77,7 +78,7 @@ public class PizzaOrderServiceImpl implements PizzaOrderService {
    */
   @Override
   public PizzaOrder findById(Long id) {
-	logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Find Pizza OrderID: {} ",id);	  
+	//logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Find Pizza OrderID: {} ",id);	  
     return pizzaOrderDAO.findById(id);
   }
 }

@@ -35,7 +35,7 @@ public class ToppingServiceImpl implements ToppingService {
   @Override
   public Topping addTopping(String name) {
     Topping topping = new Topping(name);
-	logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Topping {} saved" , name);
+	//logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Topping {} saved" , name);
     return toppingDao.save(topping);
   }
 
@@ -57,7 +57,7 @@ public class ToppingServiceImpl implements ToppingService {
    */
   @Override
   public Topping findById(Long id) {
-	logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Find Toppings By Id: {}",id);
+	//logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Find Toppings By Id: {}",id);
     return toppingDao.findById(id);
   }
 
@@ -69,7 +69,7 @@ public class ToppingServiceImpl implements ToppingService {
    */
   @Override
   public Topping findByName(String name) {
-	logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Find Toppings By Name: {}",name);
+	//logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Find Toppings By Name: {}",name);
     return toppingDao.findByName(name);
   }
 }
