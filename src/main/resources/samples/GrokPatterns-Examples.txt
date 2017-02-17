@@ -1,0 +1,34 @@
+Pattern :
+%{TIMESTAMP_ISO8601:timestamp}\|%{LOGLEVEL:loglevel}\|%{JAVACLASS:class}\|%{DATA:thread}\|TrackingId:%{UUID:TrackingId}\|ClientId:%{UUID:ClientId}\|Transaction:%{DATA:Transaction}\|Price:%{NUMBER:Price}\|OrderNo:%{NUMBER:OrderNo}\|PizzaName:%{GREEDYDATA:PizzaName}
+Example:
+2017-02-17 04:45:16|INFO|c.n.d.controller.PizzaOrderController|http-nio-8080-exec-5|TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Transaction:Pizza Ordered|Price:234.00|OrderNo:48|PizzaName:Veggie Simple
+
+-----------------------------------------------------------------------------------------------------
+
+Pattern :
+%{TIMESTAMP_ISO8601:timestamp}\|%{LOGLEVEL:loglevel}\|%{JAVACLASS:class}\|%{DATA:thread}\|TrackingId:%{UUID:TrackingId}\|ClientId:%{UUID:ClientId}\|Transaction:%{DATA:Transaction}\|Price:%{NUMBER:Price}\|PizzaName:%{GREEDYDATA:PizzaName}
+Example:
+2017-02-17 04:45:16|INFO|c.n.d.controller.PizzaOrderController|http-nio-8080-exec-5|TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Transaction:Pizza Added|Price:234.00|PizzaName:Veggie Simple
+
+
+------------------------------------------------------------------------------------------------------
+
+Pattern :
+%{TIMESTAMP_ISO8601:timestamp}\|%{LOGLEVEL:loglevel}\|%{JAVACLASS:class}\|%{DATA:thread}\|TrackingId:%{UUID:TrackingId}\|ClientId:%{UUID:ClientId}\|Transaction:%{DATA:Transaction}\|BaseName:%{GREEDYDATA:BaseName}
+Example:
+2017-02-17 04:45:16|INFO|c.n.d.controller.PizzaOrderController|http-nio-8080-exec-5|TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Transaction:Base Added|BaseName:Veggie
+
+
+-------------------------------------------------------------------------------------------------------
+
+Pattern:
+%{TIMESTAMP_ISO8601:timestamp}\|%{LOGLEVEL:loglevel}\|%{JAVACLASS:class}\|%{DATA:thread}\|TrackingId:%{UUID:TrackingId}\|ClientId:%{UUID:ClientId}\|Transaction:%{DATA:Transaction}\|ToppingName:%{GREEDYDATA:ToppingName}
+Example:
+2017-02-17 04:45:16|INFO|c.n.d.controller.PizzaOrderController|http-nio-8080-exec-5|TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Transaction:Topping Added|ToppingName:Veggie
+
+
+------------------------------------------------------------------------------------------------------------
+Pattern :
+%{TIMESTAMP_ISO8601:timestamp}\|%{LOGLEVEL:loglevel}\|%{JAVACLASS:class}\|%{DATA:thread}\|%{GREEDYDATA:LogMessage}
+Example:
+2017-02-17 06:52:37|INFO|c.n.d.DevcapsuleSpringApplication|localhost-startStop-1|Starting DevcapsuleSpringApplication v1.0 on e5398b82b52f with PID 5293 (/usr/local/tomcat/webapps/devcapsule-spring-1.0/WEB-INF/classes started by root in /usr/local/tomcat)
