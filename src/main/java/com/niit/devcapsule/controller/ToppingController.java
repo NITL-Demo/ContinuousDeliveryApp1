@@ -36,7 +36,7 @@ public class ToppingController {
   ToppingService toppingService;
 
   private static final String loggerMessage = "TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429"+"|Transaction:{}" 
-		                                      + "|ToppingName :{}"  ; 
+		                                      + "|ToppingName:{}"  ; 
   
   private static final String[] logParameters = new String[6] ;
   
