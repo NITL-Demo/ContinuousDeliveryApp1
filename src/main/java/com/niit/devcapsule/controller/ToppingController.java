@@ -36,7 +36,7 @@ public class ToppingController {
   ToppingService toppingService;
 
   private static final String loggerMessage = "TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429"+"|Transaction:{}" 
-		                                      + "|Price:{}" + "|OrderNo.:{}" + "|Pizza Name :{}" + "|Topping Name:{}" + "|Base Name:{}" ; 
+		                                      + "|ToppingName :{}"  ; 
   
   private static final String[] logParameters = new String[6] ;
   
@@ -87,11 +87,8 @@ public class ToppingController {
   public Topping addTopping(@ApiParam(value = "New topping to add", required = true) @RequestBody Topping topping) {
 	     //logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Toppings with Name: {} added",topping.getName());	  
 	     logParameters[0] = "Topping Added";
-	     logParameters[1] = "";
-	     logParameters[2] = "" ;
-	     logParameters[3] = "" ;
-	     logParameters[4] = topping.getName();
-	     logParameters[5] = "";
+	     logParameters[1] = topping.getName();
+	     
 		 
 	     logger.info(loggerMessage, logParameters);
      

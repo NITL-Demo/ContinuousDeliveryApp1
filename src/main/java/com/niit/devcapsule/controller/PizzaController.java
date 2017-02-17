@@ -37,7 +37,7 @@ public class PizzaController {
   
   
   private static final String loggerMessage = "TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429"+"|Transaction:{}" 
-          + "|Price:{}" + "|OrderNo.:{}" + "|Pizza Name :{}" + "|Topping Name:{}" + "|Base Name:{}" ; 
+          + "|Price:{}" + "|PizzaName:{}" ; 
 
   private static final String[] logParameters = new String[6] ;
 
@@ -69,10 +69,8 @@ public class PizzaController {
 	//logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|Pizza {} added ",pizza.getName());  
 	     logParameters[0] = "Pizza Added";
 	     logParameters[1] = pizza.getPrice().toString();
-	     logParameters[2] = "" ;
-	     logParameters[3] = pizza.getName();
-	     logParameters[4] = String.valueOf(pizza.getToppings().size());
-	     logParameters[5] = pizza.getBase().getName();
+	     logParameters[2] = pizza.getName();
+	    
 		 
 	     logger.info(loggerMessage, logParameters);  
 	  

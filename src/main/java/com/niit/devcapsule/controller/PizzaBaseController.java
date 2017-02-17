@@ -33,7 +33,7 @@ public class PizzaBaseController {
   
   
   private static final String loggerMessage = "TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429"+"|Transaction:{}" 
-          + "|Price:{}" + "|OrderNo.:{}" + "|Pizza Name :{}" + "|Topping Name:{}" + "|Base Name:{}" ; 
+          + "|BaseName:{}" ; 
 
   private static final String[] logParameters = new String[6] ;
 
@@ -88,11 +88,7 @@ public class PizzaBaseController {
   public Base addBase(@ApiParam(value = "Pizza base to be added", required = true) @RequestBody Base base) {
 	//logger.info("TrackingId:99a80896-35a4-468c-9ec3-b762ab161429|ClientId:99a80897-35a4-468c-9ec3-b762ab161429|BaseName : {}  added", base.getName());  
 	logParameters[0] = "Base Added";
-    logParameters[1] = "";
-    logParameters[2] = "" ;
-    logParameters[3] = "" ;
-    logParameters[4] = "";
-    logParameters[5] = base.getName();
+    logParameters[1] = base.getName();
 	 
     logger.info(loggerMessage, logParameters);
     return pizzaBaseService.addBase(base.getName());
