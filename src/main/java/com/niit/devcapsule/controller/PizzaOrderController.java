@@ -95,11 +95,9 @@ public class PizzaOrderController {
 			 
 		     logger.info(loggerMessage, logParameters);  
 		}
-	}catch(ResourceNotFoundException ex){
-		ex.getMessage();
-	}    
+	}  
 	catch(Exception ex){
-		ex.getMessage();
+		 throw new ResourceNotFoundException("Pizza not Ordered");
 	}
 	
      return pizzaOrder ;
