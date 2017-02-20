@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import java.util.Properties;
 /**
  * The Class DevcapsuleSpringApplication.
  */
@@ -20,13 +21,16 @@ public class DevcapsuleSpringApplication extends SpringBootServletInitializer {
    * @param args
    *          the arguments
    */
+	
+ /*	
   public static void main(String[] args) {
     SpringApplication.run(DevcapsuleSpringApplication.class, args);
   }
-  
+  */
     @Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(DevcapsuleSpringApplication.class);
 	}
-  
+	
+	
 }
