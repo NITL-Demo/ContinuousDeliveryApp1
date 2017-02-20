@@ -22,11 +22,11 @@ public class DevcapsuleSpringApplication extends SpringBootServletInitializer {
    *          the arguments
    */
 	
- /*	
+ 	
   public static void main(String[] args) {
     SpringApplication.run(DevcapsuleSpringApplication.class, args);
   }
-  */
+ 
     @Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(DevcapsuleSpringApplication.class);
