@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
 @Transactional
 public class PizzaServiceImpl implements PizzaService {
 	
-  private static final Logger logger = LoggerFactory.getLogger(PizzaServiceImpl.class);			
+  
 
   /** The pizza dao. */
   @Autowired
