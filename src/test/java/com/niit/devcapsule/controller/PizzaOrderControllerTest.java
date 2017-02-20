@@ -21,7 +21,9 @@ import com.niit.devcapsule.domain.Base;
 import com.niit.devcapsule.domain.Pizza;
 import com.niit.devcapsule.domain.PizzaOrder;
 import com.niit.devcapsule.domain.Topping;
+import com.niit.devcapsule.service.PizzaBaseService;
 import com.niit.devcapsule.service.PizzaOrderService;
+import com.niit.devcapsule.service.PizzaService;
 
 /**
  * The Class PizzaOrderControllerTest.
@@ -30,8 +32,11 @@ public class PizzaOrderControllerTest {
 
   /** The pizza order servlce. */
   PizzaOrderService pizzaOrderServlce;
-
-  /** The fixture. */
+  
+  /** The pizza servlce. */
+  PizzaService pizzaService;
+  
+   /** The fixture. */
   PizzaOrderController fixture;
 
   /**
@@ -44,7 +49,11 @@ public class PizzaOrderControllerTest {
   public void setUp() throws Exception {
     fixture = new PizzaOrderController();
     pizzaOrderServlce = EasyMock.createNiceMock(PizzaOrderService.class);
+    pizzaService = EasyMock.createNiceMock(PizzaService.class);
+   
     fixture.pizzaOrderService = pizzaOrderServlce;
+    fixture.pizzaService = pizzaService;
+    //fixture.baseService = baseService;
 
     // getOrders
     Set<Pizza> pizzas = new HashSet<Pizza>();
@@ -75,6 +84,9 @@ public class PizzaOrderControllerTest {
           }
         });
 
+    
+    
+    
     EasyMock.expect(pizzaOrderServlce.findById(1L)).andReturn(new PizzaOrder(1L, null, null)).anyTimes();
 
     EasyMock.expect(pizzaOrderServlce.findById(2L)).andReturn(null).anyTimes();
@@ -104,10 +116,26 @@ public class PizzaOrderControllerTest {
   @Test
   public void testAdd() throws Exception {
     Set<Pizza> pizzas = new HashSet<Pizza>();
+    //Pizza pizza = new Pizza();
+    //pizza.setId(1L);
+    
+    Set<Topping> toppings = new HashSet<Topping>();
+    toppings.add(new Topping(1L, "Onion"));
+    toppings.add(new Topping(2L, "Tomato"));
+    
+    Base base = new Base("Pan");
     Pizza pizza = new Pizza();
-    pizza.setId(1L);
+    pizza.setId(new Long(1));
+    pizza.setBase(base);
+    pizza.setToppings(toppings);
+    pizza.setPrice(new BigDecimal(102.00));
+    pizza.setName("Veggie");
     pizzas.add(pizza);
-    PizzaOrder order = new PizzaOrder(pizzas, new BigDecimal(1020));
+    
+    
+    
+    PizzaOrder order = new PizzaOrder(pizzas, new BigDecimal(102.00));
+    EasyMock.expect(pizzaService.findById(new Long(1))).andReturn(pizza).anyTimes();
     order = fixture.addPizzaOrder(order);
     assertNotNull(order);
     assertEquals(order.getId().longValue(), 1L);
