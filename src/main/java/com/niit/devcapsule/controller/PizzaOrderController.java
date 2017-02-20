@@ -83,22 +83,24 @@ public class PizzaOrderController {
 	
 	Set<Pizza> pizzaOrderedList =  pizzaOrdered.getPizzas();
 	
-	try{
-	    for(Pizza pizza : pizzaOrderedList){		
+	
+	   for(Pizza pizza : pizzaOrderedList){	
+		   
+		   
 	    	 Pizza pizzaObj = pizzaService.findById(pizza.getId());
-			 logParameters[0] = "Pizza Ordered";
-		     logParameters[1] = String.valueOf(pizzaObj.getPrice());
-		     logParameters[2] = String.valueOf(pizzaOrdered.getId()) ;
-		     logParameters[3] = pizzaObj.getName();
-		     logParameters[4] = pizzaObj.getBase().getName();
-		    
-			 
-		     logger.info(loggerMessage, logParameters);  
+	    	 
+	    	 if(pizzaObj != null){
+					 logParameters[0] = "Pizza Ordered";
+				     logParameters[1] = String.valueOf(pizzaObj.getPrice());
+				     logParameters[2] = String.valueOf(pizzaOrdered.getId()) ;
+				     logParameters[3] = pizzaObj.getName();
+				     logParameters[4] = pizzaObj.getBase().getName();
+				    
+					 
+				     logger.info(loggerMessage, logParameters);
+	    	 }
 		}
-	}  
-	catch(Exception ex){
-		 ex.getMessage();
-	}
+	
 	
      return pizzaOrder ;
   }
