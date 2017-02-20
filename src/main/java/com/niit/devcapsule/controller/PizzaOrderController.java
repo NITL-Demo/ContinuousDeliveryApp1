@@ -59,7 +59,7 @@ public class PizzaOrderController {
   @ApiOperation(value = "Get all the orders", produces = "application/json", response = PizzaOrder.class, responseContainer = "List")
   @RequestMapping(value = "/orders", method = RequestMethod.GET)
   public Iterable<PizzaOrder> getPizzaOrders() {
-	//logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Find all Ordered Pizza");  
+	
 	Iterable<PizzaOrder> pizzaOrderIterable = pizzaOrderService.findAll();
     return pizzaOrderIterable;
   }
@@ -77,15 +77,12 @@ public class PizzaOrderController {
   public PizzaOrder addPizzaOrder(
       @ApiParam(value = "New pizza order to add", required = true) @RequestBody PizzaOrder pizzaOrder) {
 		  
-	//logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Pizza Ordered : {}",pizzaOrder.getId());	 
+	
 	
 	PizzaOrder pizzaOrdered = pizzaOrderService.addOrder(pizzaOrder);
 	
 	Set<Pizza> pizzaOrderedList =  pizzaOrdered.getPizzas();
-	//Iterator<Pizza> pizzaItr = pizzaOrderedList.iterator();
-	 
-	//while(pizzaItr.hasNext()){
-		 // Pizza pizza = pizzaItr.next();
+	
 	try{
 	    for(Pizza pizza : pizzaOrderedList){		
 	    	 Pizza pizzaObj = pizzaService.findById(pizza.getId());
@@ -123,11 +120,10 @@ public class PizzaOrderController {
     pizzaOrder.setId(id);
     PizzaOrder isItThere = pizzaOrderService.findById(id);
     if (isItThere == null) {
-      //logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Pizza Order Id: {} not found",id);	  
 	  throw new ResourceNotFoundException("Order with id " + id + " not found");
 	  
     }
-	 //logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Pizza Order Id: {} updated",id);
+	
     return pizzaOrderService.updateOrder(pizzaOrder);
   }
 
@@ -144,11 +140,10 @@ public class PizzaOrderController {
     PizzaOrder isItThere = pizzaOrderService.findById(id);
 	
     if (isItThere == null) {
-      //logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Pizza Order Id: {} not found",id);
 	  throw new ResourceNotFoundException("Order with id " + id + " not found");
 	  
     }
-	//logger.info("TrackingId:89a80896-35a4-468c-9ec3-b762ab161429|ClientId:89a80897-35a4-468c-9ec3-b762ab161429|Pizza Order Id: {} deleted",id);
+	
     pizzaOrderService.deleteOrder(id);
   }
 
