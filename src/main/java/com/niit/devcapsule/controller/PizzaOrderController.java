@@ -97,7 +97,7 @@ public class PizzaOrderController {
 		}
 	}  
 	catch(Exception ex){
-		 throw new ResourceNotFoundException("Pizza not Ordered");
+		 ex.getMessage();
 	}
 	
      return pizzaOrder ;
