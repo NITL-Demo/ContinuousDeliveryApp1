@@ -51,14 +51,19 @@ public class PizzaServiceImpl implements PizzaService {
    */
   @Override
   public Pizza addPizza(Pizza pizza) {
-    Set<Topping> toppings = new HashSet<Topping>(pizza.getToppings());
-    pizza.setToppings(null);
-    Pizza pizzaSaved = pizzaDao.save(pizza);
-    if (toppings != null && !toppings.isEmpty()) {
-      pizzaSaved.setToppings(toppings);
-      pizzaSaved = pizzaDao.save(pizzaSaved);
-    }
 	
+	Pizza pizzaSaved =  null;  
+	  
+	if(pizza != null && pizza.getToppings() != null){   
+	    Set<Topping> toppings = new HashSet<Topping>(pizza.getToppings());
+	    pizza.setToppings(null);
+	    pizzaSaved = pizzaDao.save(pizza);
+	    if (toppings != null && !toppings.isEmpty()) {
+	      pizzaSaved.setToppings(toppings);
+	      pizzaSaved = pizzaDao.save(pizzaSaved);
+	    }
+	
+	}
     return pizzaSaved;
   }
 
