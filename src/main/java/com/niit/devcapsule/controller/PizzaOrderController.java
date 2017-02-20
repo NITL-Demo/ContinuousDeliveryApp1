@@ -96,7 +96,7 @@ public class PizzaOrderController {
 		     logger.info(loggerMessage, logParameters);  
 		}
 	}catch(Exception ex){
-		ex.printStackTrace();
+		//ex.printStackTrace();
 	}
 	
      return pizzaOrder ;
