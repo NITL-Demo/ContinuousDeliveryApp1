@@ -97,6 +97,9 @@ public class PizzaOrderController {
 		}
 	}catch(ResourceNotFoundException ex){
 		ex.getMessage();
+	}    
+	catch(Exception ex){
+		ex.getMessage();
 	}
 	
      return pizzaOrder ;
