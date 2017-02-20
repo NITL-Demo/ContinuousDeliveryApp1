@@ -58,7 +58,7 @@ public class PizzaServiceImpl implements PizzaService {
 	    Set<Topping> toppings = new HashSet<Topping>(pizza.getToppings());
 	    pizza.setToppings(null);
 	    pizzaSaved = pizzaDao.save(pizza);
-	    if (toppings != null && !toppings.isEmpty()) {
+	    if (!toppings.isEmpty()) {
 	      pizzaSaved.setToppings(toppings);
 	      pizzaSaved = pizzaDao.save(pizzaSaved);
 	    }
