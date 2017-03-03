@@ -43,5 +43,5 @@ public interface PizzaBaseService {
    *          String
    * @return Base
    */
-  Base addBase(String name);
+  Base addBase1(String name);
 }
