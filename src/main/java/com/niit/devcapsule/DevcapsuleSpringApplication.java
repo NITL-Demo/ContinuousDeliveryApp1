@@ -19,7 +19,7 @@ public class DevcapsuleSpringApplication extends SpringBootServletInitializer {
    * The main method.
    *
    * @param args
-   *          the arguments
+   *  the arguments
    */
 	
  	
