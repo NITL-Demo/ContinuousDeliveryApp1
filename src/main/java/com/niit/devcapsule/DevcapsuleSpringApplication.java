@@ -24,7 +24,9 @@ public class DevcapsuleSpringApplication extends SpringBootServletInitializer {
 	
  	
   public static void main(String[] args) {
-    SpringApplication.run(DevcapsuleSpringApplication.class, args).close();
+    
+	  
+     SpringApplication.run(DevcapsuleSpringApplication.class, args).close();
   }
  
     @Override
