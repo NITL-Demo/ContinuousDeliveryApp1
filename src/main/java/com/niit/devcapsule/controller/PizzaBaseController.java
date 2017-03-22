@@ -93,4 +93,19 @@ public class PizzaBaseController {
     logger.info(loggerMessage, logParameters);
     return pizzaBaseService.addBase(base.getName());
   }
+	
+	
+  @CrossOrigin(origins = "http://localhost:8000")
+  @ApiOperation(value = "Add a new pizza base", produces = "application/json", response = Base.class)
+  @RequestMapping(value = "/bases", method = RequestMethod.POST, consumes = "application/json")
+  public Base addBase1(@ApiParam(value = "Pizza base to be added", required = true) @RequestBody Base base) {
+	
+	logParameters[0] = "Base Added";
+    logParameters[1] = base.getName();
+	 
+    logger.info(loggerMessage, logParameters);
+    return pizzaBaseService.addBase(base.getName());
+  }	
+	
+	
 }
