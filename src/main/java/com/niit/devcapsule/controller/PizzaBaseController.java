@@ -69,7 +69,7 @@ public class PizzaBaseController {
     Base base = pizzaBaseService.findByName(name);
 	
     if (base == null) {
-	 
+	    
       throw new ResourceNotFoundException("Pizza base with name " + name + " not found");
     }
     return base;
